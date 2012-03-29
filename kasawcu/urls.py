@@ -7,7 +7,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Example:
     (r'^gkasa/', include('kasawcu.gkasa.urls')),
-
+    (r'^ugkasa/', include('kasawcu.ugkasa.urls')),
+    (r'^$', 'kasawcu.views.index'), 
     # Uncomment the admin/doc line below to enable admin documentation:
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

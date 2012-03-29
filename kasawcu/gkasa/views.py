@@ -22,7 +22,7 @@ def report(request, student_id):
   c = Course.objects.filter(student_id=s.student_id)
   l = Lab.objects.filter(student_id=s.student_id) 
   r = Requirement.objects.get(Q(course_id__in=c) | Q(lab_id__in=l)) 
-  return render_to_response('detail.html', 
+  return render_to_response('result.html', 
                             {'student': s, 
                             'courses': c,
                             'labs': l,
