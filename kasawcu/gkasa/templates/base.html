@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css" />
+	<title>{% block title %} Index {% endblock %} -- KASA</title>
+</head>
+<body>
+	<div id="header">
+		<h1 id="title">KASA -- {% block pagetitle %} Index {% endblock %}</h1>
+	</div>
+	<div id="content">
+		{% block content %}
+		{% endblock %}
+	</div>
+	<div id="footer">KASA 2012</div>
+</body>
+</html>

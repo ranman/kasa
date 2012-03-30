@@ -1,0 +1,29 @@
+/* reset */
+body, html, div, blockquote, img, label, p, h1, h2, h3, h4, h5, h6, pre, ul,
+ol, li, dl, dt, dd, form, a, fieldset, input, th, td
+{
+margin: 0; padding: 0; border: 0; outline: none;
+}
+h1, h2, h3, h4, h5, h6
+{
+font-size: 100%;
+}
+/* end reset */
+
+body {
+	font-size: 12px;
+	font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+	color: #333;
+}
+#header {
+	background-color: #417690;
+	color: #FFC;
+	overflow: hidden;
+	width: 100%;
+}
+#footer {
+	clear: both;
+	background-color: #417690;
+	color: #FFC;
+	width: 100%;
+}
