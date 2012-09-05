@@ -1,1 +1,91 @@
 {% extends "base.html" %}
+{% block title %} Results {% endblock %}
+{% block header %}
+	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<style>
+#coursesTaken, #requirements {
+	width: 45%;
+    padding: 20px 0px;
+}
+.itemList {
+    list-style: none;
+}
+.itemList>li {
+	padding: 5px 5px 5px 5px;
+    border: 1px solid black;
+    transition: transform .3s, background-color .3s;
+    -moz-transition: -moz-transform .3s, background-color .3s;
+    -webkit-transition: -webkit-transform .3s, background-color .3s;
+    -o-transition: -o-transform .3s, background-color .3s;
+}
+.itemList>li:hover, .highlighted {
+    background-color: royalblue;
+    transform:scale(1.1);
+    -moz-transform:scale(1.1);
+    -webkit-transform:scale(1.1);
+    -o-transform:scale(1.1);
+}
+#student p {
+	font-size: 18px;
+	padding: 5px;
+}
+	</style>
+{% endblock %}
+{% block pagetitle %}Results{% endblock %}
+{% block content %}
+	
+	<div id="student">
+		<p>{{student}}</p>
+		<p>{{student.student_id}}</p>
+	</div>
+	<div id="coursesTaken" class="left">
+		<p>Courses Taken:</p>
+		<ul id="coursesTakenList" class="itemList">
+		{% for course in courses %}
+			<li data-req="{{ }}">{{course}}</li>
+		{% empty %}
+			<li>Sorry, {{student}} has not taken any courses</li>
+		{% endfor %}
+		{% for lab in labs %}
+			<li>Lab: {{lab}}</li>
+		{% empty %}
+			<li>{{student}} has not taken any labs</li>
+		{% endfor %}
+		</ul>
+	</div>
+	<div id="requirements" class="right">
+		<p>Requirements Met:</p>
+		<ul id="requirementsList" class="itemList">
+		{% for req in requirements %}
+			<li data-req="{{ }}">{{req}}</li>
+		{% empty %}
+			<li>Sorry, {{student}} has not met any requirements</li>
+		{% endfor%}
+		</ul>
+	</div>
+	<script>
+function addHovers(trigger, targets, filterString, cssClass) {
+    var triggerStrings = trigger.getAttribute(filterString).split(' ');
+    $(trigger).hover(
+    function() {
+        for (var i = 0; i < triggerStrings.length; i++) {
+            targets.filter('[' + filterString + '~="' + triggerStrings[i] + '"]').addClass(cssClass);
+        }
+    }, function() {
+        targets.filter('.' + cssClass).removeClass(cssClass);
+    });
+};
+$(function() {
+    var $courses = $("#coursesTakenList li[data-req]");
+    var $requirements = $("#requirementsList li[data-req]");
+    var filterString = "data-req";
+    var cssClass = "highlighted";
+    $courses.each(function() {
+        addHovers(this, $requirements, filterString, cssClass);
+    });
+    $requirements.each(function() {
+        addHovers(this, $courses, filterString, cssClass);
+    });
+});
+	</script>{% endblock %}
+
